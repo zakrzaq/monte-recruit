@@ -1,7 +1,10 @@
 <template>
   <header class="header">
     <div class="header__logo">
-      <img src="@/assets/images/logo.svg" alt="logo" class="company-logo">
+      <router-link to="/">
+        <img src="@/assets/images/logo.svg" alt="logo" class="company-logo">
+
+      </router-link>
     </div>
     <div class="header__slogan">
       <p>Developed with

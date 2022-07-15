@@ -41,7 +41,12 @@ export default {
   },
   methods: {
     nextPage() {
-      this.formPage === 'first' ? this.formPage = 'second' : this.formPage = 'first'
+      if (this.formPage === 'first') {
+        this.formPage = 'second'
+      } else {
+        this.$router.push({ name: 'register-success' })
+      }
+
     },
   },
   components: {
