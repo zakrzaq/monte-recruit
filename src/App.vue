@@ -1,13 +1,18 @@
 <template>
-  <main class="main-wrapper">
-    <router-view></router-view>
-  </main>
+  <div class="app">
+    <NavHeader />
+    <main class="main-wrapper">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
+import NavHeader from './components/NavHeader.vue';
 export default {
   name: 'App',
   components: {
+    NavHeader
   }
 }
 </script>
@@ -16,8 +21,6 @@ export default {
 .main-wrapper {
   min-width: 375px;
   max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: auto;
 }
 </style>
