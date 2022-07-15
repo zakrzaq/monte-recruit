@@ -1,8 +1,10 @@
 <template>
   <div class="success">
     <h1 class="success__heading">Good job Georgia!</h1>
-    <p class="success__text">We have sent you an email to <strong>goerogia.swanson@monterail.com</strong>.
-      <br />Make sure to click the link from the message to activate your account.
+    <p class="success__text">
+      We have sent you an email to
+      <strong>goerogia.swanson@monterail.com</strong>. <br />Make sure to click
+      the link from the message to activate your account.
     </p>
     <div class="success__controls">
       <BaseButton @click="$router.push('/')">Go to homepage</BaseButton>
@@ -11,13 +13,13 @@
 </template>
 
 <script>
-import BaseButton from '@/components/base/BaseButton.vue'
+import BaseButton from "@/components/base/BaseButton.vue";
 export default {
-  name: 'RegisterSuccess',
+  name: "RegisterSuccess",
   components: {
-    BaseButton
-  }
-}
+    BaseButton,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,6 +50,22 @@ export default {
     width: 250px;
     @include jcc-aic;
   }
+}
 
+@include sm {
+  .success {
+    width: 100%;
+    margin: 10px auto;
+
+    &__text {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    &__heading {
+      font-size: 40px;
+    }
+  }
 }
 </style>
+

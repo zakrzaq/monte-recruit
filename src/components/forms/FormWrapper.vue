@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: 'FormWrapper',
-}
+  name: "FormWrapper",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -20,4 +20,16 @@ export default {
   border-radius: 24px;
   margin-bottom: 40px;
 }
+
+@include sm {
+  .form-wrapper {
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px;
+    box-shadow: none;
+    margin-bottom: 25px;
+    border-radius: none;
+  }
+}
 </style>
+

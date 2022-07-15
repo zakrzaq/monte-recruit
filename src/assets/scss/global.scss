@@ -1,6 +1,7 @@
-@import 'typography';
-@import 'mixins';
-@import 'colors';
+@import "typography";
+@import "mixins";
+@import "colors";
+@import "responsive";
 
 // global objects
 * {
@@ -12,3 +13,4 @@ html {
   @include roboto(normal, 400);
   color: $tuna;
 }
+

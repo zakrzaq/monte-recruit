@@ -48,4 +48,18 @@ export default {
     }
   }
 }
+
+@include sm {
+  .header {
+    justify-content: center;
+
+    &__slogan {
+      display: none;
+    }
+
+    &__logo {
+      padding: 0;
+    }
+  }
+}
 </style>

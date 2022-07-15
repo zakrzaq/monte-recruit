@@ -42,6 +42,7 @@ export default {
   line-height: 100%;
   transition: 250ms ease-out 100ms;
   outline: none;
+  cursor: pointer;
 
   &--primary {
     color: $white;
@@ -71,8 +72,8 @@ export default {
     }
 
     &:focus {
-      border: 0.3em solid $athens-gray;
-      background: darken($white, 0.15);
+      border: 0.3em solid $primary-brd-focus;
+      background: $athens-gray;
     }
   }
 }

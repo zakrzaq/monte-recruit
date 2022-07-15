@@ -1,6 +1,7 @@
 <template>
   <div class="register">
-    <h1 class="register__header">{{ headerA }}<br />
+    <h1 class="register__header">
+      {{ headerA }}<br />
       <span class="register__header--gray">{{ headerB }}</span>
     </h1>
     <FormWrapper>
@@ -8,54 +9,54 @@
       <RegisterPageTwo v-if="formPage === 'second'" />
       <div class="register__controls">
         <BaseButton btn-type="secondary">Log in instead</BaseButton>
-        <BaseButton btn-type="primary" @click="nextPage">{{ buttonName }}</BaseButton>
-
+        <BaseButton btn-type="primary" @click="nextPage">{{
+          buttonName
+        }}</BaseButton>
       </div>
     </FormWrapper>
   </div>
 </template>
 
 <script>
-import FormWrapper from '@/components/forms/FormWrapper.vue'
-import RegisterPageOne from '@/components/register/RegisterPageOne.vue'
-import RegisterPageTwo from '@/components/register/RegisterPageTwo.vue'
-import BaseButton from '@/components/base/BaseButton.vue'
+import FormWrapper from "@/components/forms/FormWrapper.vue";
+import RegisterPageOne from "@/components/register/RegisterPageOne.vue";
+import RegisterPageTwo from "@/components/register/RegisterPageTwo.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 export default {
-  name: 'RegisterView',
+  name: "RegisterView",
   data() {
     return {
-      formPage: 'first'
-    }
+      formPage: "first",
+    };
   },
   computed: {
     headerA() {
-      return this.formPage === 'first' ? 'Ahoy you!' : 'Great!'
+      return this.formPage === "first" ? "Ahoy you!" : "Great!";
     },
     headerB() {
-      return this.formPage === 'first' ? 'Care to register?' : 'Now your name'
+      return this.formPage === "first" ? "Care to register?" : "Now your name";
     },
     buttonName() {
-      return this.formPage === 'first' ? 'Next step' : 'Register'
-    }
+      return this.formPage === "first" ? "Next step" : "Register";
+    },
   },
   methods: {
     nextPage() {
-      if (this.formPage === 'first') {
-        this.formPage = 'second'
+      if (this.formPage === "first") {
+        this.formPage = "second";
       } else {
-        this.$router.push({ name: 'register-success' })
+        this.$router.push({ name: "register-success" });
       }
-
     },
   },
   components: {
     FormWrapper,
     RegisterPageOne,
     RegisterPageTwo,
-    BaseButton
-  }
-}
+    BaseButton,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -82,4 +83,22 @@ export default {
     gap: 20px;
   }
 }
+
+@include sm {
+  .register {
+    width: 100%;
+
+    &__header {
+      font-size: 40px;
+      text-align: center;
+    }
+
+    &__controls {
+      width: 300px;
+      flex-direction: column-reverse;
+      justify-content: center;
+    }
+  }
+}
 </style>
+
