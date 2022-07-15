@@ -26,9 +26,7 @@ export default {
   @include jcc-aic-h;
 
   &__header {
-    font-family: 'Eczar';
-    font-style: normal;
-    font-weight: 600;
+    @include eczar(normal, 600);
     font-size: 80px;
     line-height: 102%;
     letter-spacing: -0.01em;
