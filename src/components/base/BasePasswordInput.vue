@@ -3,13 +3,31 @@
     <label for="" class="inp--label">
       <slot />
     </label>
-    <input type="text" class="inp--content" placeholder="e.g. Jessica">
+    <input :type="inputType" class="inp--content" placeholder="************">
+    <button class="inp--button" @click="toggleViewPassword">
+      <img src="@/assets/icons/ico-password.svg" />
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BaseInput'
+  name: 'BaseInput',
+  data() {
+    return {
+      passwordVisible: false
+    }
+  },
+  computed: {
+    inputType() {
+      return this.passwordVisible ? 'text' : 'password'
+    }
+  },
+  methods: {
+    toggleViewPassword() {
+      this.passwordVisible = !this.passwordVisible
+    }
+  }
 }
 </script>
 
@@ -19,7 +37,7 @@ export default {
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 0.7em;
+  position: relative;
 
 
 
@@ -52,6 +70,21 @@ export default {
       background: $input-bg-focus;
       border-color: $input-brd-focus;
     }
+
+  }
+
+  &--button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

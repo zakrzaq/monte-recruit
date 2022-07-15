@@ -2,16 +2,20 @@
   <main class="main-wrapper">
     <h1>hello</h1>
     <BaseInput>Button</BaseInput>
+    <BasePasswordInput>password</BasePasswordInput>
     <router-view></router-view>
   </main>
 </template>
 
 <script>
 import BaseInput from './components/base/BaseInput.vue'
+import BasePasswordInput from './components/base/BasePasswordInput.vue'
+
 export default {
   name: 'App',
   components: {
-    BaseInput
+    BaseInput,
+    BasePasswordInput
   }
 }
 </script>
