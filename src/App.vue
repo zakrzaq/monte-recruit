@@ -1,6 +1,5 @@
 <template>
   <main class="main-wrapper">
-    <h1>hello</h1>
     <router-view></router-view>
   </main>
 </template>
@@ -15,11 +14,10 @@ export default {
 
 <style lang="scss">
 .main-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-
-  h1 {
-    color: $cherry-red;
-  }
+  min-width: 375px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
