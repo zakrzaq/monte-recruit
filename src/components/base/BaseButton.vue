@@ -1,34 +1,46 @@
 <template>
-  <button class="btn">
+  <button class="btn" @click="click">
     <slot />
   </button>
 </template>
 
 <script>
 export default {
-  name: 'BaseButton'
+  name: 'BaseButton',
+  methods: {
+    click(event) {
+      this.$emit("click", event);
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .btn {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 12px 24px;
-  gap: 10px;
-  background: $primary;
+  background: $primary-bg;
   color: $white;
   border-radius: 64px;
-  border: none;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  border: 0.3em solid $primary-bg;
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 100%;
+  transition: 3250ms ease-out 100ms;
+  outline: none;
+
+  &:hover {
+    background-color: $primary-bg-hover;
+    border-color: $primary-bg-hover;
+  }
+
+  &:focus {
+    border: 0.3em solid $primary-brd-focus;
+    background-color: $primary-bg-hover;
+  }
 }
 </style>

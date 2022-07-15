@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 @import 'typography';
 
 // Color definitions
@@ -11,9 +15,9 @@ $light-blue: rgba(47, 128, 237, 0.1);
 $dark-blue: #2f80ed;
 
 // UI colors
-$primary: $cherry-red;
-$primary-hover: $dark-red;
-$primary-focus: $orange;
+$primary-bg: $cherry-red;
+$primary-bg-hover: $dark-red;
+$primary-brd-focus: $orange;
 $input-bg: $athens-gray;
 $input-bg-hover: $darker-gray;
 $input-bg-focus: $light-blue;
