@@ -4,6 +4,11 @@
       email
     </BaseInput>
     <BaseInput inp-type="password" place-text="Enter your password">password</BaseInput>
+    <div class="form-content__messages">
+      <p>At least 8 character</p>
+      <p>At least one letter</p>
+      <p>At least one digit</p>
+    </div>
   </div>
 </template>
 
@@ -24,8 +29,9 @@ export default {
   flex-direction: column;
   gap: 25px;
 
-  &:last-child {
-    gap: 0;
+  &__messages {
+    width: 100%;
+    text-align: left;
   }
 }
 </style>

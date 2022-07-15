@@ -1,18 +1,14 @@
 <template>
   <div class="register">
-    <h1 class="register__header">Ahoy you!<br />
-      <span class="register__header--gray">Care to register?</span>
+    <h1 class="register__header">{{ headerA }}<br />
+      <span class="register__header--gray">{{ headerB }}</span>
     </h1>
     <FormWrapper>
-      <RegisterPageOne />
-      <div class="register__messages">
-        <p>At least 8 character</p>
-        <p>At least one letter</p>
-        <p>At least one digit</p>
-      </div>
+      <RegisterPageOne v-if="formPage === 'first'" />
+      <RegisterPageTwo v-if="formPage === 'second'" />
       <div class="register__controls">
         <BaseButton btn-type="secondary">Log in instead</BaseButton>
-        <BaseButton btn-type="primary" @click="nextPage">Next Step</BaseButton>
+        <BaseButton btn-type="primary" @click="nextPage">{{ buttonName }}</BaseButton>
 
       </div>
     </FormWrapper>
@@ -22,6 +18,7 @@
 <script>
 import FormWrapper from '@/components/forms/FormWrapper.vue'
 import RegisterPageOne from '@/components/register/RegisterPageOne.vue'
+import RegisterPageTwo from '@/components/register/RegisterPageTwo.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
@@ -29,6 +26,17 @@ export default {
   data() {
     return {
       formPage: 'first'
+    }
+  },
+  computed: {
+    headerA() {
+      return this.formPage === 'first' ? 'Ahoy you!' : 'Great!'
+    },
+    headerB() {
+      return this.formPage === 'first' ? 'Care to register?' : 'Now your name'
+    },
+    buttonName() {
+      return this.formPage === 'first' ? 'Next step' : 'Register'
     }
   },
   methods: {
@@ -39,6 +47,7 @@ export default {
   components: {
     FormWrapper,
     RegisterPageOne,
+    RegisterPageTwo,
     BaseButton
   }
 }
@@ -58,12 +67,6 @@ export default {
     &--gray {
       color: $jumbo;
     }
-  }
-
-  &__messages {
-    margin-top: 210x;
-    width: 100%;
-    text-align: left;
   }
 
   &__controls {
