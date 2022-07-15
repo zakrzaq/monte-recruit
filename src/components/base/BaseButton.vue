@@ -59,10 +59,21 @@ export default {
     }
   }
 
+  // fix secondary color classification in colors.scss
   &--secondary {
     color: $primary-bg;
     background: $white;
     border: 0.3em solid $white;
+
+    &:hover {
+      background: $athens-gray;
+      border-color: $athens-gray;
+    }
+
+    &:focus {
+      border: 0.3em solid $athens-gray;
+      background: darken($white, 0.15);
+    }
   }
 }
 </style>
