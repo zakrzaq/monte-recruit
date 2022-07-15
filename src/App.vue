@@ -1,17 +1,17 @@
 <template>
   <main class="main-wrapper">
     <h1>hello</h1>
-    <BaseButton>Button</BaseButton>
+    <BaseInput>Button</BaseInput>
     <router-view></router-view>
   </main>
 </template>
 
 <script>
-import BaseButton from './components/base/BaseButton.vue'
+import BaseInput from './components/base/BaseInput.vue'
 export default {
   name: 'App',
   components: {
-    BaseButton
+    BaseInput
   }
 }
 </script>

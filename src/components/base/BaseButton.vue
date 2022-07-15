@@ -30,7 +30,7 @@ export default {
   font-weight: 500;
   font-size: 1rem;
   line-height: 100%;
-  transition: 3250ms ease-out 100ms;
+  transition: 250ms ease-out 100ms;
   outline: none;
 
   &:hover {
