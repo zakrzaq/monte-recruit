@@ -25,9 +25,7 @@ export default {
   color: $white;
   border-radius: 64px;
   border: 0.3em solid $primary-bg;
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 500;
+  @include roboto-mono(normal, 500);
   font-size: 1rem;
   line-height: 100%;
   transition: 250ms ease-out 100ms;

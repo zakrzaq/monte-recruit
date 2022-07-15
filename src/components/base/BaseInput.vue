@@ -61,9 +61,7 @@ export default {
 
   &--label {
     flex: 1 1;
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-weight: 700;
+    @include roboto-mono(normal, 700);
     font-size: 1rem;
     line-height: 1.15;
     text-transform: uppercase;
@@ -78,9 +76,7 @@ export default {
     padding: 12px;
     outline: none;
     transition: 250ms ease-out 100ms;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
+    @include roboto(normal, 400);
     font-size: 1.2rem;
     line-height: 1.15;
     color: $input-txt;

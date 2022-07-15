@@ -34,9 +34,7 @@ export default {
     @include jcc-aic;
     padding-right: 30px;
     text-transform: uppercase;
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-weight: 500;
+    @include roboto-mono(normal, 500);
     font-size: 1.1rem;
     line-height: 1.1;
     letter-spacing: 0.03em;

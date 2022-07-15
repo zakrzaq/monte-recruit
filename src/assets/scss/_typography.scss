@@ -3,3 +3,15 @@
 html {
   font-size: 14px;
 }
+
+@mixin roboto($style, $weight) {
+  font-family: 'Roboto';
+  font-style: $style;
+  font-weight: $weight;
+}
+
+@mixin roboto-mono($style, $weight) {
+  font-family: 'Roboto Mono';
+  font-style: $style;
+  font-weight: $weight;
+}
