@@ -22,5 +22,8 @@ export default {
   min-width: 375px;
   max-width: 1200px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
