@@ -1,5 +1,4 @@
 <template>
-
   <main class="main-wrapper">
     <h1>hello</h1>
     <router-view></router-view>
