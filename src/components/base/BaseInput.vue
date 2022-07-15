@@ -3,13 +3,48 @@
     <label for="" class="inp--label">
       <slot />
     </label>
-    <input type="text" class="inp--content" placeholder="e.g. Jessica">
+    <input :type="inputType" class="inp--content" :placeholder="placeText">
+    <button v-if="showPasswordButton" class="inp--button" @click="toggleViewPassword">
+      <img src="@/assets/icons/ico-password.svg" />
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BaseInput'
+  name: 'BaseInput',
+  props: {
+    inpType: {
+      type: String,
+      default: 'text'
+    },
+    placeText: {
+      type: String,
+      default: 'e.g; Jessica'
+    }
+  },
+  data() {
+    return {
+      passwordVisible: false
+    }
+  },
+  computed: {
+    inputType() {
+      if (this.inpType === 'password') {
+        return this.passwordVisible ? 'text' : 'password'
+      } else {
+        return this.inpType
+      }
+    },
+    showPasswordButton() {
+      return this.inpType === 'password' ? true : false
+    }
+  },
+  methods: {
+    toggleViewPassword() {
+      this.passwordVisible = !this.passwordVisible
+    }
+  }
 }
 </script>
 
@@ -20,7 +55,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.7em;
-
+  position: relative;
 
 
   &--label {
@@ -42,6 +77,16 @@ export default {
     padding: 12px;
     outline: none;
     transition: 250ms ease-out 100ms;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.15;
+    color: $input-txt;
+
+    &::placeholder {
+      color: $input-pl-txt;
+    }
 
     &:hover {
       background: $input-bg-hover;
@@ -52,6 +97,20 @@ export default {
       background: $input-bg-focus;
       border-color: $input-brd-focus;
     }
+  }
+
+  &--button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

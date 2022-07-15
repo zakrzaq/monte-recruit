@@ -1,21 +1,20 @@
 <template>
   <main class="main-wrapper">
     <h1>hello</h1>
-    <BaseInput>Button</BaseInput>
-    <BasePasswordInput>password</BasePasswordInput>
+    <BaseInput inp-type="text" place-text="something ending with monterail.com">Email</BaseInput>
+    <BaseInput inp-type="password" place-text="*****">Password</BaseInput>
+
     <router-view></router-view>
   </main>
 </template>
 
 <script>
 import BaseInput from './components/base/BaseInput.vue'
-import BasePasswordInput from './components/base/BasePasswordInput.vue'
 
 export default {
   name: 'App',
   components: {
     BaseInput,
-    BasePasswordInput
   }
 }
 </script>
