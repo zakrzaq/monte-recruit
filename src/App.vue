@@ -10,5 +10,9 @@
 .main-wrapper {
   max-width: 900px;
   margin: 0 auto;
+
+  h1 {
+    color: $cherry-red;
+  }
 }
 </style>

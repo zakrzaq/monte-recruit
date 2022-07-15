@@ -1,0 +1,18 @@
+// Color definitions
+$white: #ffffff;
+$cherry-red: #ec1115;
+$dark-red: #a60c0e;
+$orange: #f47073;
+$athens-gray: #f7f7f7;
+$darker-gray: #e5e5e5;
+$light-blue: rgba(47, 128, 237, 0.1);
+$dark-blue: #2f80ed;
+
+// UI colors
+$primary: $cherry-red;
+$primary-hover: $dark-red;
+$primary-focus: $orange;
+$input-bg: $athens-gray;
+$input-bg-hover: $darker-gray;
+$input-bg-focus: $light-blue;
+$input-brd-focus: $dark-blue;
