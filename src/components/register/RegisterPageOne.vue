@@ -22,6 +22,10 @@ export default {
   width: 100%;
   @include jcc-aic;
   flex-direction: column;
-  gap: 25px
+  gap: 25px;
+
+  &:last-child {
+    gap: 0;
+  }
 }
 </style>
