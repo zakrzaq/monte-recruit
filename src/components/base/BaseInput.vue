@@ -97,8 +97,8 @@ export default {
   }
 
   &--button {
-    width: 40px;
-    height: 40px;
+    width: 47px;
+    height: 47px;
     border: none;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;

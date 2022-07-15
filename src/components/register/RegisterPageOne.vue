@@ -1,7 +1,9 @@
 <template>
   <div class="form-content">
-    <BaseInput inp-type="text">first name</BaseInput>
-    <BaseInput inp-type="password" place-text="***********">password</BaseInput>
+    <BaseInput inp-type="text" place-text="Something ending with monterail.com">
+      email
+    </BaseInput>
+    <BaseInput inp-type="password" place-text="Enter your password">password</BaseInput>
   </div>
 </template>
 

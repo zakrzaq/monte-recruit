@@ -38,6 +38,7 @@ export default {
     font-size: 1.1rem;
     line-height: 1.1;
     letter-spacing: 0.03em;
+    color: $tuna;
 
     &--emoji {
       font-size: 0.9rem;
