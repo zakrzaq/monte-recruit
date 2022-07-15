@@ -23,6 +23,7 @@ export default {
   height: 100px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
 
   &__logo {
     @include jcc-aic;

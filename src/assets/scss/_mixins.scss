@@ -3,3 +3,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin jcc-aic-h {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

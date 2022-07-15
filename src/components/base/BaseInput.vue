@@ -20,7 +20,7 @@ export default {
     },
     placeText: {
       type: String,
-      default: 'e.g; Jessica'
+      default: 'e.g. Jessica'
     }
   },
   data() {
@@ -50,8 +50,9 @@ export default {
 
 <style lang="scss" scoped>
 .inp {
-  max-width: 450px;
+  max-width: 550px;
   min-width: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.7em;
