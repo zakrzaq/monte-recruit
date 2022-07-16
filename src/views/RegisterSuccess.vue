@@ -7,7 +7,7 @@
       the link from the message to activate your account.
     </p>
     <div class="success__controls">
-      <BaseButton @click="$router.push('/')">Go to homepage</BaseButton>
+      <BaseButton @click="$router.push({ name: 'register' })">Go to homepage</BaseButton>
     </div>
   </div>
 </template>

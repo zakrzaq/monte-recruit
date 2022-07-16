@@ -14,7 +14,7 @@
 export default {
   name: 'BaseInput',
   props: {
-    inpType: {
+    type: {
       type: String,
       default: 'text'
     },
@@ -30,14 +30,14 @@ export default {
   },
   computed: {
     inputType() {
-      if (this.inpType === 'password') {
+      if (this.type === 'password') {
         return this.passwordVisible ? 'text' : 'password'
       } else {
-        return this.inpType
+        return this.type
       }
     },
     showPasswordButton() {
-      return this.inpType === 'password' ? true : false
+      return this.type === 'password' ? true : false
     }
   },
   methods: {

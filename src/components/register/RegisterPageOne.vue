@@ -1,9 +1,9 @@
 <template>
   <div class="form-content">
-    <BaseInput inp-type="text" place-text="Something ending with monterail.com">
+    <BaseInput type="text" place-text="Something ending with monterail.com">
       email
     </BaseInput>
-    <BaseInput inp-type="password" place-text="Enter your password">password</BaseInput>
+    <BaseInput type="password" place-text="Enter your password">password</BaseInput>
     <div class="form-content__messages">
       <p>At least 8 character</p>
       <p>At least one letter</p>

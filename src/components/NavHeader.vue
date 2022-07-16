@@ -1,13 +1,13 @@
 <template>
   <header class="header">
     <div class="header__logo">
-      <router-link to="/">
-        <img src="@/assets/images/logo.svg" alt="logo" class="company-logo">
-
+      <router-link :to="{ name: 'register' }">
+        <img src="@/assets/images/logo.svg" alt="logo" class="company-logo" />
       </router-link>
     </div>
     <div class="header__slogan">
-      <p>Developed with
+      <p>
+        Developed with
         <span class="header__slogan--emoji">❤️</span>
         by Monterail
       </p>
@@ -17,8 +17,8 @@
 
 <script>
 export default {
-  name: 'NavHeader'
-}
+  name: "NavHeader",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -30,7 +30,7 @@ export default {
 
   &__logo {
     @include jcc-aic;
-    padding-left: 30px
+    padding-left: 30px;
   }
 
   &__slogan {

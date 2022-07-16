@@ -1,6 +1,6 @@
 <template>
   <div class="chk">
-    <input type="checkbox" :name="name" value="Boat" class="chk__box" />
+    <input type="checkbox" :name="name" :value="value" class="chk__box" />
     <label :for="name" class="chk__label"><slot /></label>
   </div>
 </template>
@@ -11,7 +11,11 @@ export default {
   props: {
     name: {
       type: String,
-      required: true,
+      default: "",
+    },
+    value: {
+      type: String,
+      default: "",
     },
   },
 };
