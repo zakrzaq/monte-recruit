@@ -7,6 +7,7 @@ const user = {
       firstName: "",
       lastName: "",
       dateOfBirth: "",
+      privacyPolicy: false,
     },
   },
   getters: {

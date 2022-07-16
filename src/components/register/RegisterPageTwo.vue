@@ -1,9 +1,11 @@
 <template>
   <div class="form-content">
-    <BaseInput type="text">first name</BaseInput>
-    <BaseInput type="text" place-text="e.g. Walton">last name</BaseInput>
-    <BaseInput type="date">date of birth</BaseInput>
-    <BaseCheckbox name="privacy-policy">
+    <BaseInput type="text" v-model="user.firstName">first name</BaseInput>
+    <BaseInput type="text" place-text="e.g. Walton" v-model="user.lastName"
+      >last name</BaseInput
+    >
+    <BaseInput type="date" v-model="user.dateOfBirth">date of birth</BaseInput>
+    <BaseCheckbox name="privacy-policy" v-model="user.privacyPolicy">
       I accept <a href="#">Privacy Policy</a>
     </BaseCheckbox>
   </div>
@@ -15,6 +17,24 @@ import BaseCheckbox from "../base/BaseCheckbox.vue";
 
 export default {
   name: "RegisterPageTwo",
+  data() {
+    return {
+      user: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        privacyPolicy: false,
+      },
+    };
+  },
+  watch: {
+    user: {
+      handler(newVal) {
+        this.$emit("userUpdate", newVal);
+      },
+      deep: true,
+    },
+  },
   components: {
     BaseInput,
     BaseCheckbox,

@@ -1,9 +1,18 @@
 <template>
   <div class="form-content">
-    <BaseInput type="text" place-text="Something ending with monterail.com">
+    <BaseInput
+      type="text"
+      place-text="Something ending with monterail.com"
+      v-model="user.email"
+    >
       email
     </BaseInput>
-    <BaseInput type="password" place-text="Enter your password">password</BaseInput>
+    <BaseInput
+      type="password"
+      place-text="Enter your password"
+      v-model="user.password"
+      >password</BaseInput
+    >
     <div class="form-content__messages">
       <p>At least 8 character</p>
       <p>At least one letter</p>
@@ -13,13 +22,30 @@
 </template>
 
 <script>
-import BaseInput from '../base/BaseInput.vue'
+import BaseInput from "../base/BaseInput.vue";
+
 export default {
-  name: 'RegisterPageOne',
+  name: "RegisterPageOne",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  watch: {
+    user: {
+      handler(newVal) {
+        this.$emit("userUpdate", newVal);
+      },
+      deep: true,
+    },
+  },
   components: {
-    BaseInput
-  }
-}
+    BaseInput,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

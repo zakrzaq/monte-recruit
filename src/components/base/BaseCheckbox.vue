@@ -1,6 +1,12 @@
 <template>
   <div class="chk">
-    <input type="checkbox" :name="name" :value="value" class="chk__box" />
+    <input
+      type="checkbox"
+      :name="name"
+      :value="value"
+      class="chk__box"
+      @input="$emit('input', $event.target.checked)"
+    />
     <label :for="name" class="chk__label"><slot /></label>
   </div>
 </template>

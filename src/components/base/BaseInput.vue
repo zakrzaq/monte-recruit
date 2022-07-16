@@ -3,8 +3,17 @@
     <label for="" class="inp--label">
       <slot />
     </label>
-    <input :type="inputType" class="inp--content" :placeholder="placeText">
-    <button v-if="showPasswordButton" class="inp--button" @click="toggleViewPassword">
+    <input
+      :type="inputType"
+      class="inp--content"
+      :placeholder="placeText"
+      @input="$emit('input', $event.target.value)"
+    />
+    <button
+      v-if="showPasswordButton"
+      class="inp--button"
+      @click="toggleViewPassword"
+    >
       <img src="@/assets/icons/ico-password.svg" />
     </button>
   </div>
@@ -12,40 +21,40 @@
 
 <script>
 export default {
-  name: 'BaseInput',
+  name: "BaseInput",
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: "text",
     },
     placeText: {
       type: String,
-      default: 'e.g. Jessica'
-    }
+      default: "e.g. Jessica",
+    },
   },
   data() {
     return {
-      passwordVisible: false
-    }
+      passwordVisible: false,
+    };
   },
   computed: {
     inputType() {
-      if (this.type === 'password') {
-        return this.passwordVisible ? 'text' : 'password'
+      if (this.type === "password") {
+        return this.passwordVisible ? "text" : "password";
       } else {
-        return this.type
+        return this.type;
       }
     },
     showPasswordButton() {
-      return this.type === 'password' ? true : false
-    }
+      return this.type === "password" ? true : false;
+    },
   },
   methods: {
     toggleViewPassword() {
-      this.passwordVisible = !this.passwordVisible
-    }
-  }
-}
+      this.passwordVisible = !this.passwordVisible;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -57,7 +66,6 @@ export default {
   flex-direction: column;
   gap: 0.7em;
   position: relative;
-
 
   &--label {
     flex: 1 1;
