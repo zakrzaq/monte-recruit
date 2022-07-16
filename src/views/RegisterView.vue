@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import FormWrapper from "@/components/forms/FormWrapper.vue";
 import RegisterPageOne from "@/components/register/RegisterPageOne.vue";
 import RegisterPageTwo from "@/components/register/RegisterPageTwo.vue";
@@ -31,6 +32,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters([
+      'user/getUser'
+    ]),
     headerA() {
       return this.formPage === "first" ? "Ahoy you!" : "Great!";
     },
@@ -42,6 +46,9 @@ export default {
     },
   },
   methods: {
+    ...mapMutations([
+      'user/setUser'
+    ]),
     nextPage() {
       if (this.formPage === "first") {
         this.formPage = "second";
@@ -101,4 +108,3 @@ export default {
   }
 }
 </style>
-
