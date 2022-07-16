@@ -3,16 +3,21 @@
     <BaseInput inp-type="text">first name</BaseInput>
     <BaseInput inp-type="text" place-text="e.g. Walton">last name</BaseInput>
     <BaseInput inp-type="date">date of birth</BaseInput>
-
+    <BaseCheckbox name="privacy-policy">
+      I accept <a href="#">Privacy Policy</a>
+    </BaseCheckbox>
   </div>
 </template>
 
 <script>
 import BaseInput from '../base/BaseInput.vue'
+import BaseCheckbox from '../base/BaseCheckbox.vue'
+
 export default {
   name: 'RegisterPageTwo',
   components: {
-    BaseInput
+    BaseInput,
+    BaseCheckbox
   }
 }
 </script>
