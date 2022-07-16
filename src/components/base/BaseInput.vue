@@ -1,10 +1,11 @@
 <template>
   <div class="inp">
-    <label for="" class="inp--label">
+    <label :for="this.$slots.default[0].text" class="inp--label">
       <slot />
     </label>
     <input
       :type="inputType"
+      :name="this.$slots.default[0].text"
       class="inp--content"
       :placeholder="placeText"
       @input="$emit('input', $event.target.value)"
