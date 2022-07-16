@@ -3,7 +3,7 @@
     <h1 class="success__heading">Good job Georgia!</h1>
     <p class="success__text">
       We have sent you an email to
-      <strong>{{ getUser.email }}</strong
+      <strong>{{ user.email || "georgia.swanson@monterail.com" }}</strong
       >. <br />Make sure to click the link from the message to activate your
       account.
     </p>
@@ -22,7 +22,7 @@ import BaseButton from "@/components/base/BaseButton.vue";
 export default {
   name: "RegisterSuccess",
   computed: {
-    ...mapGetters("user", ["getUser"]),
+    ...mapGetters("user", ["user"]),
   },
   components: {
     BaseButton,

@@ -11,7 +11,7 @@ const user = {
     },
   },
   getters: {
-    getUser: (state) => {
+    user: (state) => {
       return state.user;
     },
   },
