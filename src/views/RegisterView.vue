@@ -50,11 +50,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["user/setUser"]),
+    ...mapMutations("user", ['setUser']),
     nextPage() {
       if (this.formPage === "first") {
         this.formPage = "second";
       } else {
+        this.setUser(this.user);
         this.$router.push({ name: "register-success" });
       }
     },

@@ -20,8 +20,8 @@ export default {
       default: "",
     },
     value: {
-      type: String,
-      default: "",
+      type: Boolean,
+      default: false,
     },
   },
 };

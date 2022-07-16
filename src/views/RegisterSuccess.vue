@@ -3,19 +3,27 @@
     <h1 class="success__heading">Good job Georgia!</h1>
     <p class="success__text">
       We have sent you an email to
-      <strong>goerogia.swanson@monterail.com</strong>. <br />Make sure to click
-      the link from the message to activate your account.
+      <strong>{{ getUser.email }}</strong
+      >. <br />Make sure to click the link from the message to activate your
+      account.
     </p>
     <div class="success__controls">
-      <BaseButton @click="$router.push({ name: 'register' })">Go to homepage</BaseButton>
+      <BaseButton @click="$router.push({ name: 'register' })"
+        >Go to homepage</BaseButton
+      >
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import BaseButton from "@/components/base/BaseButton.vue";
+
 export default {
   name: "RegisterSuccess",
+  computed: {
+    ...mapGetters("user", ["getUser"]),
+  },
   components: {
     BaseButton,
   },
@@ -68,4 +76,3 @@ export default {
   }
 }
 </style>
-
