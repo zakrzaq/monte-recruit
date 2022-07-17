@@ -20,13 +20,16 @@
       :valid="!validatePasswordMessage"
       >password</BaseInput
     >
-    <div class="form-content__error">
-      {{ validatePasswordMessage }}
-    </div>
     <div class="form-content__messages">
-      <p>At least 8 character</p>
-      <p>At least one letter</p>
-      <p>At least one digit</p>
+      <p :class="passwordErrors.length ? 'form-content--text-error' : ''">
+        At least 8 character
+      </p>
+      <p :class="passwordErrors.letter ? 'form-content--text-error' : ''">
+        At least one letter
+      </p>
+      <p :class="passwordErrors.digit ? 'form-content--text-error' : ''">
+        At least one digit
+      </p>
     </div>
   </div>
 </template>
@@ -51,6 +54,11 @@ export default {
         email: false,
         password: false,
       },
+      passwordErrors: {
+        length: false,
+        digit: false,
+        letter: false,
+      },
     };
   },
   computed: {
@@ -62,7 +70,11 @@ export default {
     },
     validatePasswordMessage() {
       if (!this.touched.password) return "";
-      return this.user.password.length < 7 ? "Min 8 chars" : "";
+      return !this.passwordErrors.length &&
+        !this.passwordErrors.letter &&
+        !this.passwordErrors.digit
+        ? ""
+        : "password error";
     },
   },
   methods: {
@@ -82,6 +94,15 @@ export default {
       handler(newVal) {
         this.validateEmail();
         this.validatePassword();
+        this.user.password.length < 8
+          ? (this.passwordErrors.length = true)
+          : (this.passwordErrors.length = false);
+        !this.user.password.match(/\d/)
+          ? (this.passwordErrors.digit = true)
+          : (this.passwordErrors.digit = false);
+        !this.user.password.match(/[a-zA-Z]/)
+          ? (this.passwordErrors.letter = true)
+          : (this.passwordErrors.letter = false);
         this.$emit("userUpdate", newVal);
       },
       deep: true,
@@ -114,6 +135,10 @@ export default {
   &__error {
     width: 100%;
     margin-top: -1rem;
+  }
+
+  &--text-error {
+    color: $primary-bg;
   }
 }
 </style>
