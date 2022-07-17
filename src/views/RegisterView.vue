@@ -5,7 +5,11 @@
       <span class="register__header--gray">{{ headerB }}</span>
     </h1>
     <FormWrapper>
-      <RegisterPageOne v-if="formPage === 'first'" @userUpdate="updateUser" />
+      <RegisterPageOne
+        v-if="formPage === 'first'"
+        @userUpdate="updateUser"
+        @validUpdated="pageOneValid"
+      />
       <RegisterPageTwo v-if="formPage === 'second'" @userUpdate="updateUser" />
       <div class="register__controls">
         <BaseButton btn-type="secondary">Log in instead</BaseButton>
@@ -36,6 +40,10 @@ export default {
         lastName: "",
         dateOfBirth: "",
       },
+      valid: {
+        pageOne: false,
+        pageTwo: false,
+      },
     };
   },
   computed: {
@@ -50,11 +58,11 @@ export default {
     },
   },
   methods: {
-    ...mapMutations("user", ['setUser']),
+    ...mapMutations("user", ["setUser"]),
     nextPage() {
-      if (this.formPage === "first") {
-        this.formPage = "second";
-      } else {
+      if (this.formPage === "first" && this.valid.pageOne)
+        return (this.formPage = "second");
+      if (this.formPage === "second") {
         this.setUser(this.user);
         this.$router.push({ name: "register-success" });
       }
@@ -62,6 +70,18 @@ export default {
     updateUser(payload) {
       this.user = { ...this.user, ...payload };
     },
+    pageOneValid(payload) {
+      payload.email && payload.password
+        ? (this.valid.pageOne = true)
+        : (this.valid.pageOne = false);
+    },
+    pageTwoValid(payload) {
+      console.log(payload);
+      payload.firstName && payload.lastName && payload.dateOfBirth && payload.privacyPolicy
+        ? (this.valid.pageTwo = true)
+        : (this.valid.pageTwo = false);
+    },
+
   },
   components: {
     FormWrapper,

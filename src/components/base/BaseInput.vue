@@ -1,18 +1,23 @@
 <template>
   <div class="inp">
-    <label :for="this.$slots.default[0].text" class="inp--label">
+    <label
+      :for="this.$slots.default[0].text"
+      class="inp__label"
+          >
       <slot />
     </label>
     <input
       :type="inputType"
       :name="this.$slots.default[0].text"
-      class="inp--content"
+      class="inp__content"
+      :class="isFieldValid"
       :placeholder="placeText"
       @input="$emit('input', $event.target.value)"
+      @blur="$emit('blur')"
     />
     <button
       v-if="showPasswordButton"
-      class="inp--button"
+      class="inp__button"
       @click="toggleViewPassword"
     >
       <img src="@/assets/icons/ico-password.svg" />
@@ -32,6 +37,10 @@ export default {
       type: String,
       default: "e.g. Jessica",
     },
+    valid: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -48,6 +57,9 @@ export default {
     },
     showPasswordButton() {
       return this.type === "password" ? true : false;
+    },
+    isFieldValid() {
+      return !this.valid ? "inp__content--error" : "";
     },
   },
   methods: {
@@ -68,7 +80,7 @@ export default {
   gap: 0.7em;
   position: relative;
 
-  &--label {
+  &__label {
     flex: 1 1;
     @include roboto-mono(normal, 700);
     font-size: 1rem;
@@ -77,7 +89,7 @@ export default {
     color: $orange;
   }
 
-  &--content {
+  &__content {
     flex: 1 1;
     background: $input-bg;
     border: 0.1em solid $input-bg;
@@ -103,9 +115,14 @@ export default {
       background: $input-bg-focus;
       border-color: $input-brd-focus;
     }
+
+    &--error {
+      background: $athens-gray;
+      border-color: $primary-bg;
+    }
   }
 
-  &--button {
+  &__button {
     width: 47px;
     height: 47px;
     border: none;
