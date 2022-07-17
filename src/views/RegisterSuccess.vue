@@ -1,6 +1,6 @@
 <template>
   <div class="success">
-    <h1 class="success__heading">Good job Georgia!</h1>
+    <h1 class="success__heading">Good job {{ user.firstName || Georgia }}!</h1>
     <p class="success__text">
       We have sent you an email to
       <strong>{{ user.email || "georgia.swanson@monterail.com" }}</strong
