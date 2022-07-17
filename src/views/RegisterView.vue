@@ -69,12 +69,12 @@ export default {
     nextPage() {
       if (this.formPage === "first" && !this.valid.pageOne)
         return allObjectKeys(this.$refs.regPageOne.touched, true);
-      if (this.formPage === "first" && this.valid.pageOne) {
+      if (this.formPage === "first" && this.valid.pageOne)
         return (this.formPage = "second");
-      }
       if (this.formPage === "second" && !this.valid.pageTwo)
         return allObjectKeys(this.$refs.regPageTwo.touched, true);
-      if (this.formPage === 'second' && !this.valid.pageTwo) return allObjectKeys(this.$refs.regPageTwo.touched, true)
+      if (this.formPage === "second" && !this.valid.pageTwo)
+        return allObjectKeys(this.$refs.regPageTwo.touched, true);
       if (this.formPage === "second" && this.valid.pageTwo) {
         allObjectKeys(this.$refs.regPageTwo.touched, true);
         this.setUser(this.user);
@@ -99,7 +99,7 @@ export default {
         : (this.valid.pageTwo = false);
     },
   },
-    components: {
+  components: {
     FormWrapper,
     RegisterPageOne,
     RegisterPageTwo,
