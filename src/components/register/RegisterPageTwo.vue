@@ -7,7 +7,9 @@
       :valid="!validateFirstNameMessage"
       >first name</BaseInput
     >
-    {{ validateFirstNameMessage }}
+    <div class="form-content__error">
+      {{ validateFirstNameMessage }}
+    </div>
     <BaseInput
       type="text"
       place-text="e.g. Walton"
@@ -16,7 +18,9 @@
       :valid="!validateLastNameMessage"
       >last name</BaseInput
     >
-    {{ validateLastNameMessage }}
+    <div class="form-content__error">
+      {{ validateLastNameMessage }}
+    </div>
     <BaseInput
       type="date"
       v-model="user.dateOfBirth"
@@ -24,7 +28,9 @@
       :valid="!validateDateOfBirthMessage"
       >date of birth</BaseInput
     >
-    {{ validateDateOfBirthMessage }}
+    <div class="form-content__error">
+      {{ validateDateOfBirthMessage }}
+    </div>
     <BaseCheckbox
       name="privacy-policy"
       v-model="user.privacyPolicy"
@@ -32,7 +38,9 @@
     >
       I accept <a href="#">Privacy Policy</a>
     </BaseCheckbox>
-    {{ validatePrivacyPolicyMessage }}
+    <div class="form-content__error">
+      {{ validatePrivacyPolicyMessage }}
+    </div>
   </div>
 </template>
 
@@ -140,6 +148,11 @@ export default {
 
   &:last-child {
     gap: 0;
+  }
+
+  &__error {
+    width: 100%;
+    margin-top: -1rem;
   }
 }
 </style>

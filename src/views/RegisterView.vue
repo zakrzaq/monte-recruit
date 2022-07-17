@@ -9,11 +9,13 @@
         v-if="formPage === 'first'"
         @userUpdate="updateUser"
         @validUpdated="pageOneValid"
+        ref="regPageOne"
       />
       <RegisterPageTwo
         v-if="formPage === 'second'"
         @userUpdate="updateUser"
         @validUpdated="pageTwoValid"
+        ref="regPageTwo"
       />
       <div class="register__controls">
         <BaseButton btn-type="secondary">Log in instead</BaseButton>
@@ -31,6 +33,7 @@ import FormWrapper from "@/components/forms/FormWrapper.vue";
 import RegisterPageOne from "@/components/register/RegisterPageOne.vue";
 import RegisterPageTwo from "@/components/register/RegisterPageTwo.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
+import allObjectKeys from "@/helpers/allObjectKeys";
 
 export default {
   name: "RegisterView",
@@ -64,9 +67,16 @@ export default {
   methods: {
     ...mapMutations("user", ["setUser"]),
     nextPage() {
-      if (this.formPage === "first" && this.valid.pageOne)
+      if (this.formPage === "first" && !this.valid.pageOne)
+        return allObjectKeys(this.$refs.regPageOne.touched, true);
+      if (this.formPage === "first" && this.valid.pageOne) {
         return (this.formPage = "second");
+      }
+      if (this.formPage === "second" && !this.valid.pageTwo)
+        return allObjectKeys(this.$refs.regPageTwo.touched, true);
+      if (this.formPage === 'second' && !this.valid.pageTwo) return allObjectKeys(this.$refs.regPageTwo.touched, true)
       if (this.formPage === "second" && this.valid.pageTwo) {
+        allObjectKeys(this.$refs.regPageTwo.touched, true);
         this.setUser(this.user);
         this.$router.push({ name: "register-success" });
       }
@@ -89,7 +99,7 @@ export default {
         : (this.valid.pageTwo = false);
     },
   },
-  components: {
+    components: {
     FormWrapper,
     RegisterPageOne,
     RegisterPageTwo,

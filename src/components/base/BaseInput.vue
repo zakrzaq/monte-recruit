@@ -8,7 +8,7 @@
     </label>
     <input
       :type="inputType"
-      :name="this.$slots.default[0].text"
+      :name="this.$slots.default[0].text.trim()"
       class="inp__content"
       :class="isFieldValid"
       :placeholder="placeText"

@@ -9,7 +9,9 @@
     >
       email
     </BaseInput>
-    {{ validateEmailMessage }}
+    <div class="form-content__error">
+      {{ validateEmailMessage }}
+    </div>
     <BaseInput
       type="password"
       place-text="Enter your password"
@@ -18,7 +20,9 @@
       :valid="!validatePasswordMessage"
       >password</BaseInput
     >
-    {{ validatePasswordMessage }}
+    <div class="form-content__error">
+      {{ validatePasswordMessage }}
+    </div>
     <div class="form-content__messages">
       <p>At least 8 character</p>
       <p>At least one letter</p>
@@ -105,6 +109,11 @@ export default {
   &__messages {
     width: 100%;
     text-align: left;
+  }
+
+  &__error {
+    width: 100%;
+    margin-top: -1rem;
   }
 }
 </style>
