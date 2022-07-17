@@ -84,7 +84,7 @@ export default {
     },
     validateDateOfBirthMessage() {
       if (!this.touched.dateOfBirth) return "";
-      return validateAge(this.user.dateOfBirth) >= 18 ? "" : "Please provide your date of birth.";
+      return validateAge(this.user.dateOfBirth) >= 18 ? "" : "You must be at least 18 years old.";
     },
     validatePrivacyPolicyMessage() {
       if (!this.touched.privacyPolicy) return "";
@@ -100,7 +100,7 @@ export default {
         : (this.valid.firstName = false);
     },
     validateLastName() {
-      !this.validateLastNameMessage
+      !this.validateLastNameMessag
         ? (this.valid.lastName = true)
         : (this.valid.lastName = false);
     },
