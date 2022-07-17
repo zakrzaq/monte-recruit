@@ -90,7 +90,6 @@ export default {
         : (this.valid.pageOne = false);
     },
     pageTwoValid(payload) {
-      console.log(payload);
       payload.firstName &&
       payload.lastName &&
       payload.dateOfBirth &&

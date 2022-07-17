@@ -47,6 +47,7 @@
 <script>
 import BaseInput from "../base/BaseInput.vue";
 import BaseCheckbox from "../base/BaseCheckbox.vue";
+import validateAge from '@/helpers/validateAge'
 
 export default {
   name: "RegisterPageTwo",
@@ -83,7 +84,7 @@ export default {
     },
     validateDateOfBirthMessage() {
       if (!this.touched.dateOfBirth) return "";
-      return this.user.dateOfBirth ? "" : "Please provide your date of birth.";
+      return validateAge(this.user.dateOfBirth) >= 18 ? "" : "Please provide your date of birth.";
     },
     validatePrivacyPolicyMessage() {
       if (!this.touched.privacyPolicy) return "";
