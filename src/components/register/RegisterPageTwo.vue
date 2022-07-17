@@ -47,7 +47,7 @@
 <script>
 import BaseInput from "../base/BaseInput.vue";
 import BaseCheckbox from "../base/BaseCheckbox.vue";
-import validateAge from '@/helpers/validateAge'
+import validateAge from "@/helpers/validateAge";
 
 export default {
   name: "RegisterPageTwo",
@@ -84,13 +84,27 @@ export default {
     },
     validateDateOfBirthMessage() {
       if (!this.touched.dateOfBirth) return "";
-      return validateAge(this.user.dateOfBirth) >= 18 ? "" : "You must be at least 18 years old.";
+      return validateAge(this.user.dateOfBirth) >= 18
+        ? ""
+        : "You must be at least 18 years old.";
     },
     validatePrivacyPolicyMessage() {
       if (!this.touched.privacyPolicy) return "";
       return this.user.privacyPolicy
         ? ""
         : "Please accept our Pivacy Policy to register.";
+    },
+    firstName() {
+      return this.user.firstName;
+    },
+    lastName() {
+      return this.user.lastName;
+    },
+    dateOfBirth() {
+      return this.user.dateOfBirth;
+    },
+    privacyPolicy() {
+      return this.user.privacyPolicy;
     },
   },
   methods: {
@@ -105,7 +119,7 @@ export default {
         : (this.valid.lastName = false);
     },
     validateDateOfBirth() {
-      !this.validateDateOfBirthMessage
+      validateAge(this.user.dateOfBirth) >= 18
         ? (this.valid.dateOfBirth = true)
         : (this.valid.dateOfBirth = false);
     },
@@ -118,10 +132,6 @@ export default {
   watch: {
     user: {
       handler(newVal) {
-        this.validateFirstName();
-        this.validateLastName();
-        this.validateDateOfBirth();
-        this.validatePrivacyPolicy();
         this.$emit("userUpdate", newVal);
       },
       deep: true,
@@ -131,6 +141,18 @@ export default {
         this.$emit("validUpdated", newVal);
       },
       deep: true,
+    },
+    firstName() {
+      this.validateFirstName();
+    },
+    lastName() {
+      this.validateLastName();
+    },
+    dateOfBirth() {
+      this.validateDateOfBirth();
+    },
+    privacyPolicy() {
+      this.validatePrivacyPolicy();
     },
   },
   components: {

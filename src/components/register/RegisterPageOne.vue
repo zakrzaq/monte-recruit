@@ -21,13 +21,31 @@
       >password</BaseInput
     >
     <div class="form-content__messages">
-      <p :class="passwordErrors.length || touched.password ? 'form-content--text-error' : ''">
+      <p
+        :class="
+          passwordErrors.length && touched.password
+            ? 'form-content--text-error'
+            : ''
+        "
+      >
         At least 8 character
       </p>
-      <p :class="passwordErrors.letter || touched.password ? 'form-content--text-error' : ''">
+      <p
+        :class="
+          passwordErrors.letter && touched.password
+            ? 'form-content--text-error'
+            : ''
+        "
+      >
         At least one letter
       </p>
-      <p :class="passwordErrors.digit || touched.password ? 'form-content--text-error' : ''">
+      <p
+        :class="
+          passwordErrors.digit && touched.password
+            ? 'form-content--text-error'
+            : ''
+        "
+      >
         At least one digit
       </p>
     </div>
@@ -55,9 +73,9 @@ export default {
         password: false,
       },
       passwordErrors: {
-        length: false,
-        digit: false,
-        letter: false,
+        length: true,
+        digit: true,
+        letter: true,
       },
     };
   },
@@ -70,9 +88,9 @@ export default {
     },
     validatePasswordMessage() {
       if (!this.touched.password) return "";
-      return this.passwordErrors.length &&
-        this.passwordErrors.letter &&
-        this.passwordErrors.digit
+      return !this.passwordErrors.length &&
+        !this.passwordErrors.letter &&
+        !this.passwordErrors.digit
         ? ""
         : "error";
     },
@@ -82,9 +100,7 @@ export default {
   },
   methods: {
     validateEmail() {
-      this.passwordErrors.length &&
-      this.passwordErrors.digit &&
-      this.passwordErrors.letter
+      !this.validateEmailMessage
         ? (this.valid.email = true)
         : (this.valid.email = false);
     },
@@ -97,6 +113,9 @@ export default {
   watch: {
     user: {
       handler(newVal) {
+        this.validateEmail();
+        this.validatePassword();
+
         this.$emit("userUpdate", newVal);
       },
       deep: true,
@@ -108,17 +127,15 @@ export default {
       deep: true,
     },
     password() {
-      this.validateEmail();
-      this.validatePassword();
       this.user.password.length < 8
         ? (this.passwordErrors.length = true)
         : (this.passwordErrors.length = false);
-      !this.user.password.match(/\d/)
-        ? (this.passwordErrors.digit = true)
-        : (this.passwordErrors.digit = false);
-      !this.user.password.match(/[a-zA-Z]/)
-        ? (this.passwordErrors.letter = true)
-        : (this.passwordErrors.letter = false);
+      this.user.password.match(/\d/)
+        ? (this.passwordErrors.digit = false)
+        : (this.passwordErrors.digit = true);
+      this.user.password.match(/[a-zA-Z]/)
+        ? (this.passwordErrors.letter = false)
+        : (this.passwordErrors.letter = true);
     },
   },
   components: {
