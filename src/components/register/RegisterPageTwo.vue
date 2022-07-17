@@ -25,7 +25,11 @@
       >date of birth</BaseInput
     >
     {{ validateDateOfBirthMessage }}
-    <BaseCheckbox name="privacy-policy" v-model="user.privacyPolicy" @blur="touched.privacyPolicy = true">
+    <BaseCheckbox
+      name="privacy-policy"
+      v-model="user.privacyPolicy"
+      @blur="touched.privacyPolicy = true"
+    >
       I accept <a href="#">Privacy Policy</a>
     </BaseCheckbox>
     {{ validatePrivacyPolicyMessage }}
@@ -47,6 +51,12 @@ export default {
         privacyPolicy: false,
       },
       touched: {
+        firstName: false,
+        lastName: false,
+        dateOfBirth: false,
+        privacyPolicy: false,
+      },
+      valid: {
         firstName: false,
         lastName: false,
         dateOfBirth: false,
@@ -74,10 +84,42 @@ export default {
         : "Please accept our Pivacy Policy to register.";
     },
   },
+  methods: {
+    validateFirstName() {
+      !this.validateFirstNameMessage
+        ? (this.valid.firstName = true)
+        : (this.valid.firstName = false);
+    },
+    validateLastName() {
+      !this.validateLastNameMessage
+        ? (this.valid.lastName = true)
+        : (this.valid.lastName = false);
+    },
+    validateDateOfBirth() {
+      !this.validateDateOfBirthMessage
+        ? (this.valid.dateOfBirth = true)
+        : (this.valid.dateOfBirth = false);
+    },
+    validatePrivacyPolicy() {
+      this.user.privacyPolicy
+        ? (this.valid.privacyPolicy = true)
+        : (this.valid.privacyPolicy = false);
+    },
+  },
   watch: {
     user: {
       handler(newVal) {
+        this.validateFirstName();
+        this.validateLastName();
+        this.validateDateOfBirth();
+        this.validatePrivacyPolicy();
         this.$emit("userUpdate", newVal);
+      },
+      deep: true,
+    },
+    valid: {
+      handler(newVal) {
+        this.$emit("validUpdated", newVal);
       },
       deep: true,
     },

@@ -10,7 +10,11 @@
         @userUpdate="updateUser"
         @validUpdated="pageOneValid"
       />
-      <RegisterPageTwo v-if="formPage === 'second'" @userUpdate="updateUser" />
+      <RegisterPageTwo
+        v-if="formPage === 'second'"
+        @userUpdate="updateUser"
+        @validUpdated="pageTwoValid"
+      />
       <div class="register__controls">
         <BaseButton btn-type="secondary">Log in instead</BaseButton>
         <BaseButton btn-type="primary" @click="nextPage">{{
@@ -62,7 +66,7 @@ export default {
     nextPage() {
       if (this.formPage === "first" && this.valid.pageOne)
         return (this.formPage = "second");
-      if (this.formPage === "second") {
+      if (this.formPage === "second" && this.valid.pageTwo) {
         this.setUser(this.user);
         this.$router.push({ name: "register-success" });
       }
@@ -77,11 +81,13 @@ export default {
     },
     pageTwoValid(payload) {
       console.log(payload);
-      payload.firstName && payload.lastName && payload.dateOfBirth && payload.privacyPolicy
+      payload.firstName &&
+      payload.lastName &&
+      payload.dateOfBirth &&
+      payload.privacyPolicy
         ? (this.valid.pageTwo = true)
         : (this.valid.pageTwo = false);
     },
-
   },
   components: {
     FormWrapper,
