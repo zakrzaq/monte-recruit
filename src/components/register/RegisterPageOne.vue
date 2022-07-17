@@ -76,6 +76,9 @@ export default {
         ? ""
         : "password error";
     },
+    password() {
+      return this.user.password
+    },
   },
   methods: {
     validateEmail() {
@@ -92,7 +95,18 @@ export default {
   watch: {
     user: {
       handler(newVal) {
-        this.validateEmail();
+                this.$emit("userUpdate", newVal);
+      },
+      deep: true,
+    },
+    valid: {
+      handler(newVal) {
+        this.$emit("validUpdated", newVal);
+      },
+      deep: true,
+    },
+    password() {
+this.validateEmail();
         this.validatePassword();
         this.user.password.length < 8
           ? (this.passwordErrors.length = true)
@@ -103,15 +117,7 @@ export default {
         !this.user.password.match(/[a-zA-Z]/)
           ? (this.passwordErrors.letter = true)
           : (this.passwordErrors.letter = false);
-        this.$emit("userUpdate", newVal);
-      },
-      deep: true,
-    },
-    valid: {
-      handler(newVal) {
-        this.$emit("validUpdated", newVal);
-      },
-      deep: true,
+
     },
   },
   components: {
