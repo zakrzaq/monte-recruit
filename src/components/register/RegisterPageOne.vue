@@ -21,13 +21,13 @@
       >password</BaseInput
     >
     <div class="form-content__messages">
-      <p :class="passwordErrors.length ? 'form-content--text-error' : ''">
+      <p :class="passwordErrors.length || touched.password ? 'form-content--text-error' : ''">
         At least 8 character
       </p>
-      <p :class="passwordErrors.letter ? 'form-content--text-error' : ''">
+      <p :class="passwordErrors.letter || touched.password ? 'form-content--text-error' : ''">
         At least one letter
       </p>
-      <p :class="passwordErrors.digit ? 'form-content--text-error' : ''">
+      <p :class="passwordErrors.digit || touched.password ? 'form-content--text-error' : ''">
         At least one digit
       </p>
     </div>
@@ -70,19 +70,21 @@ export default {
     },
     validatePasswordMessage() {
       if (!this.touched.password) return "";
-      return !this.passwordErrors.length &&
-        !this.passwordErrors.letter &&
-        !this.passwordErrors.digit
+      return this.passwordErrors.length &&
+        this.passwordErrors.letter &&
+        this.passwordErrors.digit
         ? ""
-        : "password error";
+        : "error";
     },
     password() {
-      return this.user.password
+      return this.user.password;
     },
   },
   methods: {
     validateEmail() {
-      !this.validateEmailMessage
+      this.passwordErrors.length &&
+      this.passwordErrors.digit &&
+      this.passwordErrors.letter
         ? (this.valid.email = true)
         : (this.valid.email = false);
     },
@@ -95,7 +97,7 @@ export default {
   watch: {
     user: {
       handler(newVal) {
-                this.$emit("userUpdate", newVal);
+        this.$emit("userUpdate", newVal);
       },
       deep: true,
     },
@@ -106,18 +108,17 @@ export default {
       deep: true,
     },
     password() {
-this.validateEmail();
-        this.validatePassword();
-        this.user.password.length < 8
-          ? (this.passwordErrors.length = true)
-          : (this.passwordErrors.length = false);
-        !this.user.password.match(/\d/)
-          ? (this.passwordErrors.digit = true)
-          : (this.passwordErrors.digit = false);
-        !this.user.password.match(/[a-zA-Z]/)
-          ? (this.passwordErrors.letter = true)
-          : (this.passwordErrors.letter = false);
-
+      this.validateEmail();
+      this.validatePassword();
+      this.user.password.length < 8
+        ? (this.passwordErrors.length = true)
+        : (this.passwordErrors.length = false);
+      !this.user.password.match(/\d/)
+        ? (this.passwordErrors.digit = true)
+        : (this.passwordErrors.digit = false);
+      !this.user.password.match(/[a-zA-Z]/)
+        ? (this.passwordErrors.letter = true)
+        : (this.passwordErrors.letter = false);
     },
   },
   components: {
