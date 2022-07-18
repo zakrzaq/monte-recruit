@@ -97,6 +97,9 @@ export default {
     password() {
       return this.user.password;
     },
+    email() {
+      return this.user.email;
+    },
   },
   methods: {
     validateEmail() {
@@ -113,9 +116,6 @@ export default {
   watch: {
     user: {
       handler(newVal) {
-        this.validateEmail();
-        this.validatePassword();
-
         this.$emit("userUpdate", newVal);
       },
       deep: true,
@@ -127,6 +127,7 @@ export default {
       deep: true,
     },
     password() {
+      this.validatePassword();
       this.user.password.length < 8
         ? (this.passwordErrors.length = true)
         : (this.passwordErrors.length = false);
@@ -136,6 +137,9 @@ export default {
       this.user.password.match(/[a-zA-Z]/)
         ? (this.passwordErrors.letter = false)
         : (this.passwordErrors.letter = true);
+    },
+    email() {
+      this.validateEmail();
     },
   },
   components: {

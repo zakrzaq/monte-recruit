@@ -35,6 +35,7 @@
       name="privacy-policy"
       v-model="user.privacyPolicy"
       @blur="touched.privacyPolicy = true"
+      :valid="!validatePrivacyPolicyMessage"
     >
       I accept <a href="#">Privacy Policy</a>
     </BaseCheckbox>

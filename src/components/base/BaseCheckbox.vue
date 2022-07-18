@@ -5,6 +5,7 @@
       :name="name"
       :value="value"
       class="chk__box"
+      :class="{ 'chk__box--error': isFieldValid }"
       @input="$emit('input', $event.target.checked)"
       @blur="$emit('blur')"
     />
@@ -24,6 +25,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    valid: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    isFieldValid() {
+      return !this.valid ? "chk__box--error" : "";
+    },
   },
 };
 </script>
@@ -37,8 +47,12 @@ export default {
   &__box {
     width: 24px;
     height: 24px;
-    border: 0.75px solid $checkbox-brd;
+    outline: 0.75px solid $checkbox-brd;
     border-radius: 8px;
+
+    &--error {
+      outline: 0.75px solid $primary-bg;
+    }
   }
 
   &__label {
